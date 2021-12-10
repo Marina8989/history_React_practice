@@ -49,7 +49,36 @@ function About() {
 }
 
 function Topics(){
-  return <h2>Topics Page</h2>
+  let match = useRouteMatch();
+  console.log(match);
+
+  return(
+    <div>
+      <h2>Topics</h2>
+      <ul>
+        <li>
+          <Link to={`${match.url}/first`}>Inner Topic One</Link>
+        </li>
+        <li>
+          <Link to={`${match.url}/second`}>Inner Topic Two</Link>
+        </li>
+      </ul>
+
+      <Switch>
+        <Route path={`${match.path}/:topicId`}>
+          <Topic/>
+        </Route>
+        <Route path='/topics'>
+          <h3>Please select a topic</h3>
+        </Route>
+      </Switch>
+    </div>
+  )
+}
+
+function Topic(){
+  let {topicId} = useParams();
+  return <h3>Requested topic ID: {topicId}</h3>
 }
 
 
