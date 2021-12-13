@@ -1,85 +1,134 @@
-import React from 'react';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  useRouteMatch,
-  useParams
-} from 'react-router-dom';
+import React, {useState, useRef, useEffect} from 'react';
 
 export default function App() {
-  return(
-    <Router>
-      <div>
-        <ul>
-          <li>
-            <Link to='/'>Home</Link>
-          </li>
-          <li>
-            <Link to='/about'>About</Link>
-          </li>
-          <li>
-            <Link to='/topics'>Topics</Link>
-          </li>
-        </ul>
+  const [showInput, setShowInput] = useState(false);
+  const input = useRef(null);
 
-        <Switch>
-          <Route path='/about'>
-            <About />
-          </Route>
-          <Route path='/topics'>
-            <Topics />
-          </Route>
-          <Route path='/'>
-            <Home />
-          </Route>
-        </Switch>
-      </div>
-    </Router>
-  )
-}
+  const handleClick = () => {
+    setShowInput(!showInput)
+  }
+  
+  useEffect(() => {
+     if(showInput){
+       input.current.focus()
+     }
+  }, [showInput])
 
-function Home(){
-  return <h2>Home Page</h2>
-}
-
-function About() {
-  return <h2>About Page</h2>
-}
-
-function Topics(){
-  let match = useRouteMatch();
-  console.log(match);
-
-  return(
+  return (
     <div>
-      <h2>Topics</h2>
-      <ul>
-        <li>
-          <Link to={`${match.url}/first`}>Inner Topic One</Link>
-        </li>
-        <li>
-          <Link to={`${match.url}/second`}>Inner Topic Two</Link>
-        </li>
-      </ul>
-
-      <Switch>
-        <Route path={`${match.path}/:topicId`}>
-          <Topic/>
-        </Route>
-        <Route path='/topics'>
-          <h3>Please select a topic</h3>
-        </Route>
-      </Switch>
+     <h1>Hello Code</h1>
+    {showInput && <input ref={input} />}
+    <h2 onClick={handleClick}>Click</h2>
     </div>
   )
 }
 
-function Topic(){
-  let {topicId} = useParams();
-  return <h3>Requested topic ID: {topicId}</h3>
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// import React from 'react';
+// import {
+//   BrowserRouter as Router,
+//   Switch,
+//   Route,
+//   Link,
+//   useRouteMatch,
+//   useParams
+// } from 'react-router-dom';
+
+// export default function App() {
+//   return(
+//     <Router>
+//       <div>
+//         <ul>
+//           <li>
+//             <Link to='/'>Home</Link>
+//           </li>
+//           <li>
+//             <Link to='/about'>About</Link>
+//           </li>
+//           <li>
+//             <Link to='/topics'>Topics</Link>
+//           </li>
+//         </ul>
+
+//         <Switch>
+//           <Route path='/about'>
+//             <About />
+//           </Route>
+//           <Route path='/topics'>
+//             <Topics />
+//           </Route>
+//           <Route path='/'>
+//             <Home />
+//           </Route>
+//         </Switch>
+//       </div>
+//     </Router>
+//   )
+// }
+
+// function Home(){
+//   return <h2>Home Page</h2>
+// }
+
+// function About() {
+//   return <h2>About Page</h2>
+// }
+
+// function Topics(){
+//   let match = useRouteMatch();
+//   console.log(match);
+
+//   return(
+//     <div>
+//       <h2>Topics</h2>
+//       <ul>
+//         <li>
+//           <Link to={`${match.url}/first`}>Inner Topic One</Link>
+//         </li>
+//         <li>
+//           <Link to={`${match.url}/second`}>Inner Topic Two</Link>
+//         </li>
+//       </ul>
+
+//       <Switch>
+//         <Route path={`${match.path}/:topicId`}>
+//           <Topic/>
+//         </Route>
+//         <Route path='/topics'>
+//           <h3>Please select a topic</h3>
+//         </Route>
+//       </Switch>
+//     </div>
+//   )
+// }
+
+// function Topic(){
+//   let {topicId} = useParams();
+//   return <h3>Requested topic ID: {topicId}</h3>
+// }
 
 
 
