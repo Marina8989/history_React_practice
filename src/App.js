@@ -1,29 +1,26 @@
 import React, {useState, useRef, useEffect} from 'react';
 
-
-function App(){
+export default function App(){
   const [showInput, setShowInput] = useState(false);
   const input = useRef(null)
 
-  const handleClick = () =>{
-    const nextShowInput = !showInput;
-    setShowInput(nextShowInput);
+  const handleClick = () => {
+    setShowInput(!showInput);
   }
-  useEffect(() => {
-    if(showInput){
-      input.current.focus()
+ useEffect(() => {
+   if(showInput){
+     input.current.focus();
     }
-  }, [showInput])
-  return (
-    <div>
-      <h1>Hello CodeSandbox</h1>
-      {showInput && <input ref={input}/>}
-      <h2 onClick={handleClick}>show input</h2>
-    </div>
-  )
-}
+ }, [showInput])
+ return(
+   <div>
+     <h1>Hello Code</h1>
+     {showInput && <input ref={input}/>}
+     <h4 onClick={handleClick}>Show Input</h4>
+   </div>
+ )
+ }
 
-export default App
 
 
 
