@@ -21,9 +21,6 @@ export default function App() {
      <h1>Hello Code</h1>
      <h2>{counter}</h2>
      <h3 onClick={() => setCounter(counter + 1)}>Increase number</h3>
-
-     <h2>{newCounter}</h2>
-     <h3 onClick={() => setNewCounter(newCounter + 1)}>Increase number</h3>
     {showInput && <input ref={input} />}
     <h2 onClick={handleClick}>Click</h2>
     </div>
