@@ -1,30 +1,18 @@
-import React, {useState, useRef, useEffect} from 'react';
+import React, {useState} from 'react';
 
 export default function App() {
-  const [showInput, setShowInput] = useState(false);
-  const [counter, setCounter] = useState(0);
-  const [newCounter, setNewCounter] = useState(0);
-  const input = useRef(null);
+   const [counter, setCounter] = useState(0);
 
-  const handleClick = () => {
-    setShowInput(!showInput)
-  }
-  
-  useEffect(() => {
-     if(showInput){
-       input.current.focus()
-     }
-  }, [showInput])
+   const handleIncrement = () => {
+     setCounter(counter + 1);
+   }
 
-  return (
-    <div>
-     <h1>Hello Code</h1>
-     <h2>{counter}</h2>
-     <h3 onClick={() => setCounter(counter + 1)}>Increase number</h3>
-    {showInput && <input ref={input} />}
-    <h2 onClick={handleClick}>Click</h2>
-    </div>
-  )
+   return(
+     <div>
+       {counter}
+       <button onClick={handleIncrement}>increment</button>
+     </div>
+   )
 }
 
 
