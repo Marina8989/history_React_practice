@@ -1,24 +1,18 @@
-import axios from 'axios';
-import React, {useState, useEffect} from 'react';
+//import axios from 'axios';
+import React, {useRef} from 'react';
 
 export default function App() {
-   const [data, setData] = useState("");
-   const [count, setCount] = useState(0);
-  
-   useEffect(() => {
-       axios.get("https://jsonplaceholder.typicode.com/comments")
-         .then((response) => {
-           setData(response.data[0].email)
-           console.log('Call API')
-         })
-   }, [])
+  const inputValue = useRef(null);
 
+  const onClick = () => {
+    inputValue.current.focus();
+  }
+  
    return(
      <div>
-       <h3>Hello World</h3>
-       <h4>{data}</h4>
-       <h4>{count}</h4>
-       <button onClick={() => {setCount(count + 1)}}>Click</button>
+       <h3>Pedro</h3>
+       <input placeholder='Ex...'  type='text' ref={inputValue}/>
+       <button onClick={onClick}>Change Name</button>
      </div>
    )
 }
