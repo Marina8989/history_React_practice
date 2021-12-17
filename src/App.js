@@ -1,30 +1,24 @@
-import React, {useState} from 'react';
+import axios from 'axios';
+import React, {useState, useEffect} from 'react';
 
 export default function App() {
-   const [value, setValue] = useState('');
-   const [list, setList] = useState([])
-
-   const handleValue = (e) => {
-      const newValue = e.target.value;
-      setValue(newValue);
-      const newArr = [...list, newValue]
-      setList(newArr)
-      console.log('list', list)
-      console.log('value',value)
-   }
-   const handleSubmit = (e) => {
-    e.preventDefault();
-    setValue('')
-   }
+   const [data, setData] = useState("");
+   const [count, setCount] = useState(0);
+  
+   useEffect(() => {
+       axios.get("https://jsonplaceholder.typicode.com/comments")
+         .then((response) => {
+           setData(response.data[0].email)
+           console.log('Call API')
+         })
+   }, [])
 
    return(
      <div>
-     <form onSubmit={handleSubmit}>
-       <input placeholder='please enter value...' onChange={handleValue} value={value}/>
-     </form>  
-       {list.map(item => {
-         <li key={item}>{item}</li>
-       })}
+       <h3>Hello World</h3>
+       <h4>{data}</h4>
+       <h4>{count}</h4>
+       <button onClick={() => {setCount(count + 1)}}>Click</button>
      </div>
    )
 }
