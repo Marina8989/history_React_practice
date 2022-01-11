@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 import { connect } from "react-redux";
-import { getUsers } from "./store/users/userActions";
+import { getUsers, removeUser } from "./store/users/userActions";
  
 function App(props){
     console.log(props.users)
@@ -11,7 +11,7 @@ function App(props){
         <div>
           <h2>Name List:</h2>
             {props.isLoading && <h3>Loading...</h3>}
-            {props.users.map(item => <div key={item.id}>{item.name}</div>)}
+            {props.users.map(item => <div key={item.id} onClick={() => props.removeUser(item)}>{item.name}</div>)}
         </div>
     )
 }
@@ -24,7 +24,8 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = {
-    getUsers
+    getUsers,
+    removeUser
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

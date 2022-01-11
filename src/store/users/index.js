@@ -7,6 +7,7 @@ const initialState = {
 export const GET_USERS_PENDING = "GET_USERS_PENDING";
 export const GET_USERS_SUCCESS = "GET_USERS_SUCCESS";
 export const GET_USERS_ERROR = "GET_USERS_ERROR";
+export const USER_REMOVE = "USER_REMOVE";
 
 function userReducer(state=initialState, action){
     switch(action.type){
@@ -26,7 +27,12 @@ function userReducer(state=initialState, action){
               ...state,
               isError: true,
               isLoading: false
-          }      
+          } 
+      case USER_REMOVE:
+          return {
+              ...state,
+              data: state.data.filter(item => item.id !== action.payload.id)
+          }         
       default:
           return state;
     }

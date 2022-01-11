@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_USERS_PENDING, GET_USERS_SUCCESS, GET_USERS_ERROR} from "./index";
+import { GET_USERS_PENDING, GET_USERS_SUCCESS, GET_USERS_ERROR, USER_REMOVE} from "./index";
 
 export const getUsers = () => async (dispatch, getState) => {
     try{
@@ -17,4 +17,12 @@ export const getUsers = () => async (dispatch, getState) => {
          payload: err
      })
     }
+}
+
+
+export const removeUser = (user) => (dispatch, getState) => {
+    dispatch({
+        type: USER_REMOVE,
+        payload: user
+    })
 }
